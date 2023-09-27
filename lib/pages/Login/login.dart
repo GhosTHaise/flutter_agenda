@@ -29,20 +29,44 @@ class LoginPageState extends State<LoginPage> {
             ),
             child: Expanded(
               child: Container(
-                padding: const EdgeInsets.all(25),
-                color: Colors.white,
-                child: Stack(
-                  children: const [
-                    Text(
-                      "Get Started",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    )
-                  ],
+            padding: const EdgeInsets.all(25),
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Get Started",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-              ),
+                const SizedBox(height: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        OutlinedButton(
+                            onPressed: () => {},
+                            child: Image.asset(
+                              "assets/images/google.png",
+                              height: 55,
+                              width: 30,
+                            ))
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text("- or -")
+                  ],
+                )
+              ],
             ),
           )),
+        ),
+      ),
     );
     ;
   }
