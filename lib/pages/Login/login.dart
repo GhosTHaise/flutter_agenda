@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:fluter_agenda/pages/home/widgets/GetOtpForm.dart";
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,19 +15,22 @@ class LoginPageState extends State<LoginPage> {
       backgroundColor: const Color(0xFF0088EE),
       body: const Text("Je commence"),
       bottomNavigationBar: Container(
-          //color: Colors.white,
-          height: (MediaQuery.of(context).size.height * 0.5),
-          decoration: BoxDecoration(boxShadow: [
-            BoxShadow(
-                color: Colors.grey.withOpacity(0.2),
-                spreadRadius: 5,
-                blurRadius: 10),
-          ]),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
-            ),
+        //color: Colors.white,
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top,
+        ),
+        height: 350,
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 5,
+              blurRadius: 10),
+        ]),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
             child: Expanded(
               child: Container(
             padding: const EdgeInsets.all(25),
@@ -59,7 +63,8 @@ class LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text("- or -")
+                    Text("- or -"),
+                    GetOtpForm()
                   ],
                 )
               ],
