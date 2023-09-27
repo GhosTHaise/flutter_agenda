@@ -1,5 +1,6 @@
+import "package:fluter_agenda/pages/Login/login.dart";
 import "package:flutter/material.dart";
-import "package:fluter_agenda/pages/home/home.dart";
+import "package:flutter/services.dart";
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +11,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+    );
     return const MaterialApp(
       title: "ScheduLife",
       debugShowCheckedModeBanner: false,
-      home: homePage(),
+      home: LoginPage(),
     );
   }
 }
