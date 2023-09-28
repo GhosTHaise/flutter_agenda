@@ -19,7 +19,7 @@ class LoginPageState extends State<LoginPage> {
         padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top,
         ),
-        height: 350,
+        height: 380,
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -31,8 +31,7 @@ class LoginPageState extends State<LoginPage> {
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
-            child: Expanded(
-              child: Container(
+          child: Container(
             padding: const EdgeInsets.all(25),
             color: Colors.white,
             child: Column(
@@ -61,15 +60,34 @@ class LoginPageState extends State<LoginPage> {
                       ],
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
-                    Text("- or -"),
-                    GetOtpForm()
+                    const Text("- or -"),
+                    const GetOtpForm(),
+                    const SizedBox(height: 25),
+                    const Text.rich(
+                      TextSpan(
+                        text: 'By continuing, I hereby accept the',
+                        // default text
+                        style:
+                            TextStyle(fontSize: 13, color: Color(0xFF616C74)),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: ' Terms of Service  ',
+                              style: TextStyle(color: Color(0xFF0088EE))),
+                          TextSpan(text: 'and ', style: TextStyle()),
+                          TextSpan(
+                              text: 'Privacy Policy.',
+                              style: TextStyle(color: Color(0xFF0088EE)))
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
+                    )
                   ],
                 )
               ],
             ),
-          )),
+          ),
         ),
       ),
     );
