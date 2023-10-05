@@ -1,5 +1,9 @@
+import "package:firebase_auth/firebase_auth.dart";
+import "package:firebase_core/firebase_core.dart";
+import "package:fluter_agenda/pages/Login/logic/google_sign_in.dart";
 import "package:flutter/material.dart";
 import "package:fluter_agenda/pages/home/widgets/GetOtpForm.dart";
+import "package:provider/provider.dart";
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -51,7 +55,13 @@ class LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         OutlinedButton(
-                            onPressed: () => {},
+                            onPressed: () {
+                              final provider =
+                                  Provider.of<GoogleSignInProvider>(context,
+                                      listen: false);
+
+                              provider.googleLogin();
+                            },
                             child: Image.asset(
                               "assets/images/google.png",
                               height: 55,
@@ -70,7 +80,7 @@ class LoginPageState extends State<LoginPage> {
                         text: 'By continuing, I hereby accept the',
                         // default text
                         style:
-                            TextStyle(fontSize: 13, color: Color(0xFF616C74)),
+                        TextStyle(fontSize: 13, color: Color(0xFF616C74)),
                         children: <TextSpan>[
                           TextSpan(
                               text: ' Terms of Service  ',

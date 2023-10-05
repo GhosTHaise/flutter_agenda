@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "415527061370",
+    "project_id": "flutteragenda-d25f7",
+    "storage_bucket": "flutteragenda-d25f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415527061370:android:8fa6255c0c0045e3ddf8c3",
+        "android_client_info": {
+          "package_name": "mg.ghost.fluter_agenda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415527061370-57bk7aetsvcm2nm64oru8vkgsapctfu5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mg.ghost.fluter_agenda",
+            "certificate_hash": "7606a9978a6798ce941c7b7fe9895c7bf66bb83b"
+          }
+        },
+        {
+          "client_id": "415527061370-rco312nrc72ee5kbigf2ojqpi7kaugnu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwSwvXWjvIlvQIm6D723SapHlrP8xyv2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415527061370-rco312nrc72ee5kbigf2ojqpi7kaugnu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "415527061370-056b31osafooek68esnc4njcnfi6fcmt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mg.ghost.fluterAgenda"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

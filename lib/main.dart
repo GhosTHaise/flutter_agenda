@@ -1,8 +1,15 @@
+import "package:firebase_auth/firebase_auth.dart";
+import "package:firebase_core/firebase_core.dart";
+import "package:fluter_agenda/pages/Login/logic/google_sign_in.dart";
 import "package:fluter_agenda/pages/Login/login.dart";
+import "package:fluter_agenda/pages/home/home.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
+import "package:provider/provider.dart";
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -15,10 +22,11 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
-    return const MaterialApp(
-      title: "ScheduLife",
-      debugShowCheckedModeBanner: false,
-      home: LoginPage(),
-    );
+    return ChangeNotifierProvider(
+        create: (context) => GoogleSignInProvider(),
+        child: const MaterialApp(
+            title: "ScheduLife",
+            debugShowCheckedModeBanner: false,
+            home: Scaffold(body: homePage())));
   }
 }
