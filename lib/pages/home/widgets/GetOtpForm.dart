@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -62,7 +63,22 @@ class GetOtpForm extends StatelessWidget {
           ),
         ),
         FilledButton(
-          onPressed: () => {},
+          onPressed: () async {
+            FirebaseAuth auth = FirebaseAuth.instance;
+            await auth.verifyPhoneNumber(
+              phoneNumber: '+261384882135',
+              verificationCompleted: (PhoneAuthCredential credential) async {
+                await auth.signInWithCredential(credential);
+              },
+              verificationFailed: (FirebaseAuthException e) {
+                if (e.code == 'invalid-phone-number') {
+                  print('The provided phone number is not valid.');
+                }
+              },
+              codeSent: (String verificationId, int? resendToken) {},
+              codeAutoRetrievalTimeout: (String verificationId) {},
+            );
+          },
           style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(50)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
