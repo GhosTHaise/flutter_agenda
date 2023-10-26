@@ -1,5 +1,6 @@
 import "package:firebase_auth/firebase_auth.dart";
 import "package:fluter_agenda/pages/Login/login.dart";
+import "package:fluter_agenda/pages/calendar/calendar.dart";
 import "package:flutter/material.dart";
 
 class homePage extends StatelessWidget {
@@ -8,16 +9,15 @@ class homePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF0088EE),
+      backgroundColor: const Color(0xFFFFFFEE),
       body: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData) {
-              return const Center(
-                child: Text("I am home baby !"),
-              );
+              print(snapshot.data);
+              return const Calendar();
             } else if (snapshot.hasError) {
               return const Center(child: Text("Something went wrong"));
             } else {
