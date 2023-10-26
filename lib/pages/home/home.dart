@@ -16,6 +16,7 @@ class homePage extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData) {
+              print(snapshot.data);
               return const Calendar();
             } else if (snapshot.hasError) {
               return const Center(child: Text("Something went wrong"));

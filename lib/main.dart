@@ -6,8 +6,6 @@ import "package:fluter_agenda/pages/home/home.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:provider/provider.dart";
-import 'package:calendar_view/calendar_view.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -26,11 +24,9 @@ class MyApp extends StatelessWidget {
     );
     return ChangeNotifierProvider(
         create: (context) => GoogleSignInProvider(),
-        child: CalendarControllerProvider(
-            controller: EventController(),
-            child: MaterialApp(
-                title: "ScheduLife",
-                debugShowCheckedModeBanner: false,
-                home: Scaffold(body: homePage()))));
+        child: MaterialApp(
+            title: "ScheduLife",
+            debugShowCheckedModeBanner: false,
+            home: Scaffold(body: homePage())));
   }
 }
