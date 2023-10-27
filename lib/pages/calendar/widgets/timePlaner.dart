@@ -65,7 +65,7 @@ class _timePlanerState extends State<timePlaner> {
                           evenement['dateStart'].toDate(),
                           evenement['dateEnd'].toDate(),
                           Color(int.parse(evenement['Color'])),
-                          evenement['isAllDay']));
+                          false));
                     });
                   }
                 }
@@ -80,6 +80,8 @@ class _timePlanerState extends State<timePlaner> {
                 initialDisplayDate: widget.date_passed,
                 initialSelectedDate: widget.date_passed,
                 dataSource: MeetingDataSource(_getDataSource()),
+                showDatePickerButton: false,
+                showNavigationArrow: false,
               );
             }));
   }
