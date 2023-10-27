@@ -16,6 +16,8 @@ class _CalendarState extends State<Calendar> {
   //controller
   final nameEventController = TextEditingController();
   final startDateEventController = TextEditingController();
+  final endDateEventController = TextEditingController();
+  final colorEventController = TextEditingController();
 
   DateTime startEvent = DateTime.now();
   DateTime endEvent = DateTime.now();
@@ -33,9 +35,17 @@ class _CalendarState extends State<Calendar> {
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2030));
-
+    print(_picked);
     if (_picked != null) {
-      startDateEventController.text = _picked.toString();
+      TimeOfDay? _time_picker =
+          await showTimePicker(context: context, initialTime: TimeOfDay.now());
+
+      if (_time_picker != null) {
+        print(_time_picker);
+        startDateEventController.text = DateTime(_picked.year, _picked.month,
+                _picked.day, _time_picker.hour, _time_picker.minute)
+            .toString();
+      }
     }
   }
 
@@ -47,9 +57,15 @@ class _CalendarState extends State<Calendar> {
         lastDate: DateTime(2030));
 
     if (_picked != null) {
-      setState(() {
-        endEvent = _picked;
-      });
+      TimeOfDay? _time_picker =
+          await showTimePicker(context: context, initialTime: TimeOfDay.now());
+
+      if (_time_picker != null) {
+        print(_time_picker);
+        endDateEventController.text = DateTime(_picked.year, _picked.month,
+                _picked.day, _time_picker.hour, _time_picker.minute)
+            .toString();
+      }
     }
   }
 
@@ -78,67 +94,95 @@ class _CalendarState extends State<Calendar> {
                               return Container(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 15, horizontal: 30),
-                                height: 400,
-                                child: Column(
-                                  children: [
-                                    TextFormField(
-                                      controller: nameEventController,
-                                      decoration: const InputDecoration(
-                                          labelText: "Event Name :",
-                                          filled: true,
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide.none),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.blueAccent))),
-                                    ),
-                                    TextFormField(
-                                      controller: nameEventController,
-                                      readOnly: true,
-                                      onTap: () {
-                                        _selectStartDate();
-                                      },
-                                      decoration: const InputDecoration(
-                                          labelText: "Date Start",
-                                          filled: true,
-                                          prefixIcon:
-                                              Icon(Icons.calendar_today),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide.none),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.blueAccent))),
-                                    ),
-                                    TextFormField(
-                                      controller: nameEventController,
-                                      decoration: const InputDecoration(
-                                          labelText: "Date End",
-                                          filled: true,
-                                          prefixIcon:
-                                              Icon(Icons.calendar_today),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide.none),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.blueAccent))),
-                                    ),
-                                    TextFormField(
-                                      controller: nameEventController,
-                                      decoration: const InputDecoration(
-                                          labelText: "Color :",
-                                          filled: true,
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide.none),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.blueAccent))),
-                                    ),
-                                  ],
+                                height: 450,
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      TextFormField(
+                                        controller: nameEventController,
+                                        decoration: const InputDecoration(
+                                            labelText: "Event Name :",
+                                            filled: true,
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide.none),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.blueAccent))),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      TextFormField(
+                                        controller: startDateEventController,
+                                        readOnly: true,
+                                        onTap: () {
+                                          _selectStartDate();
+                                        },
+                                        decoration: const InputDecoration(
+                                            labelText: "Date Start",
+                                            filled: true,
+                                            prefixIcon:
+                                                Icon(Icons.calendar_today),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide.none),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.blueAccent))),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      TextFormField(
+                                        controller: endDateEventController,
+                                        readOnly: true,
+                                        onTap: () {
+                                          _selectEndDate();
+                                        },
+                                        decoration: const InputDecoration(
+                                            labelText: "Date End",
+                                            filled: true,
+                                            prefixIcon:
+                                                Icon(Icons.calendar_today),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide.none),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.blueAccent))),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      TextFormField(
+                                        controller: colorEventController,
+                                        decoration: const InputDecoration(
+                                            labelText: "Color :",
+                                            filled: true,
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide.none),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.blueAccent))),
+                                      ),
+                                      const SizedBox(height: 30),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          ElevatedButton(
+                                              onPressed: () => {},
+                                              child: Text("Add Event")),
+                                          SizedBox(
+                                            width: 15,
+                                          ),
+                                          ElevatedButton(
+                                            onPressed: () => {},
+                                            child: Text("Cancel"),
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.red),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               );
                             })
                       },
-                  child: Text("Ajouter"))
+                  child: const Text("Ajouter"))
             ],
           ),
         ),
